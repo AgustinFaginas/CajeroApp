@@ -35,45 +35,25 @@
         android:id="@+id/nombreUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Ingrese nombre de usuario"
+        android:hint="Ingrese su nuevo nombre de usuario"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:textSize="30dp"
+        android:textSize="25dp"
+        android:textAlignment="center"
         ></EditText>
 
-    <Button
-        android:id="@+id/ingresar"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:hint="Ingresar"
-        android:layout_marginTop="50dp"
-        android:background="#FFC107"
-        >
-
-    </Button>
 
     <Button
         android:id="@+id/registrarse"
         android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="30dp"
-        android:hint="Registrarse"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:background="#FFC107"
-        >
+        android:hint="Registrarse"
+        android:textSize="30dp">
 
     </Button>
 
 
-
-
-
-
-
-
-
 </LinearLayout>
-

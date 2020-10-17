@@ -1,0 +1,133 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#12DAA1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CAJEROAPP"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-black"
+        android:background="#12DAA1"
+        ></TextView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dinero en cuenta "
+        android:textSize="20dp"
+        android:background="#FFEB3B"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/dineroEnCuenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFEB3B"
+        android:text="$0"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        ></TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        >
+
+        <EditText
+            android:id="@+id/dineroADepositar"
+            android:layout_width="208dp"
+            android:layout_height="50dp"
+            android:hint="Dinero a depositar"
+            android:inputType="number"
+            ></EditText>
+
+        <Button
+            android:id="@+id/depositar"
+            android:layout_width="135dp"
+            android:layout_height="54dp"
+            android:hint="Depositar"
+            android:layout_marginLeft="10dp"
+            >
+
+        </Button>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp">
+
+        <EditText
+            android:id="@+id/dineroAExtraer"
+            android:layout_width="208dp"
+            android:layout_height="50dp"
+            android:hint="Dinero a extraer"
+            android:inputType="number"
+            ></EditText>
+
+        <Button
+            android:id="@+id/extraer"
+            android:layout_width="135dp"
+            android:layout_height="54dp"
+            android:hint="Extraer"
+            android:layout_marginLeft="10dp"
+            >
+
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp">
+
+        <EditText
+            android:id="@+id/dineroATransferir"
+            android:layout_width="208dp"
+            android:layout_height="50dp"
+            android:hint="Dinero a transferir"
+            android:inputType="number"
+            ></EditText>
+
+        <Button
+            android:id="@+id/transferir"
+            android:layout_width="135dp"
+            android:layout_height="54dp"
+            android:hint="Trasferir"
+            android:layout_marginLeft="10dp"
+            >
+
+        </Button>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/notificacion"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="15dp"
+        ></TextView>
+
+
+</LinearLayout>
