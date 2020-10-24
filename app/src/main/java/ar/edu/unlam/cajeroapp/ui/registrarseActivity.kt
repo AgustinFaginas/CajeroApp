@@ -19,6 +19,11 @@ class registrarseActivity: AppCompatActivity() {
 
         registrarse.setOnClickListener(){
 
+            val nombre = nombreUsuario.text.toString()
+
+            val usuario = Usuario(nombre)
+
+            usuarioViewModel.save(usuario)
 
             val intent = Intent (this,MainActivity::class.java)
             startActivity(intent)

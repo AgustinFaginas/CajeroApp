@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import ar.edu.unlam.cajeroapp.R
+import ar.edu.unlam.cajeroapp.model.Usuario
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,12 +16,17 @@ class MainActivity : AppCompatActivity() {
 
         val usuarioViewModel : UsuarioViewModel by viewModels{DatabaseViewModelFactory(applicationContext)}
 
+
         ingresar.setOnClickListener(){
+
+
+
             val intent = Intent (this,HomeActivity::class.java)
             startActivity(intent)
         }
 
         registrarse.setOnClickListener(){
+
 
             val intent = Intent (this,registrarseActivity::class.java)
             startActivity(intent)

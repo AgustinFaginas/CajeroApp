@@ -8,8 +8,8 @@ import ar.edu.unlam.cajeroapp.model.Usuario
 interface UsuarioDao {
 
     @Query (value = "SELECT * FROM  usuario")
-    fun getAll():List<Usuario>
+   suspend fun getAll():List<UsuarioEntity>
 
     @Insert
-    fun saveUsuario(entity: UsuarioEntity)
+     suspend fun saveUsuario(entity: UsuarioEntity)
 }

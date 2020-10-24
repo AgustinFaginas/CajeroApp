@@ -5,13 +5,13 @@ import ar.edu.unlam.cajeroapp.model.UsuarioRepository
 
 class RoomUsuarioRepository (private  val usuarioDao: UsuarioDao) : UsuarioRepository {
 
-    override fun save(usuario :Usuario) {
+    override suspend fun save(usuario :Usuario) {
 
         val usuarioEntity = UsuarioEntity(nombre=usuario.nombre)
         usuarioDao.saveUsuario(usuarioEntity)
     }
 
-    override fun getAll(): List<Usuario> {
+    override suspend fun getAll(): List<UsuarioEntity> {
 
      return  usuarioDao.getAll()
     }

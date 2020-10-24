@@ -2,24 +2,32 @@ package ar.edu.unlam.cajeroapp.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import ar.edu.unlam.cajeroapp.data.UsuarioEntity
 import ar.edu.unlam.cajeroapp.model.Usuario
 import ar.edu.unlam.cajeroapp.model.UsuarioRepository
+import kotlinx.coroutines.launch
 
 class UsuarioViewModel(
-    private val usuarioRepository: UsuarioRepository
-) : ViewModel() {
+    private val usuarioRepository: UsuarioRepository ) : ViewModel() {
 
-    val listaUsuarios = MutableLiveData<List<Usuario>>()
+    val listaUsuarios = MutableLiveData<List<UsuarioEntity>>()
 
     init {
-        listaUsuarios.value = usuarioRepository.getAll()
+        viewModelScope.launch { listaUsuarios.value = usuarioRepository.getAll() }
+
     }
 
     fun save(usuario: Usuario) {
-        usuarioRepository.save(usuario)
-        listaUsuarios.value = usuarioRepository.getAll()
+
+        viewModelScope.launch { usuarioRepository.save(usuario)
+            listaUsuarios.value = usuarioRepository.getAll() }
+
     }
+
+
+
+
 
 
 }

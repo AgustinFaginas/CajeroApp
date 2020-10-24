@@ -15,42 +15,39 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val usuarioViewModel : UsuarioViewModel by viewModels{DatabaseViewModelFactory(applicationContext)}
-
-        val miViewModel: MainViewModel by viewModels ()
-
-
-        dineroEnCuenta.setText("$ ${miViewModel.obtenerCantidadDeDinero()}")
-
+        val usuarioViewModel: UsuarioViewModel by viewModels {
+            DatabaseViewModelFactory(
+                applicationContext
+            )
+        }
 
 
-        depositar.setOnClickListener(){
+        val miViewModel: HomeViewModel by viewModels()
 
-            if (!dineroADepositar.getText().toString().trim().equals("")){
+
+        miViewModel.estado.observe(this, Observer {onTextChange(it)})
+
+
+
+        depositar.setOnClickListener() {
 
                 miViewModel.depositar(dineroADepositar.text.toString().toInt())
-                dineroEnCuenta.setText("$ ${miViewModel.obtenerCantidadDeDinero()}")
-                dineroADepositar.setText("")
-                notificacion.setText("Dinero depositado correctamente ")
-            } else
-                notificacion.setText("El campo depositar debe contener una suma de dinero")
 
+            extraer.setOnClickListener() {
 
+                    miViewModel.extraer(dineroAExtraer.text.toString().toInt())
 
-
-        }
-        extraer.setOnClickListener(){
-            if (!dineroAExtraer.getText().toString().trim().equals("")){
-
-                miViewModel.extraer(dineroAExtraer.text.toString().toInt())
-                dineroEnCuenta.setText("$ ${miViewModel.obtenerCantidadDeDinero()}")
-                dineroAExtraer.setText("")
-                notificacion.setText("Dinero extraido correctamente")
-            } else
-                notificacion.setText("El campo extraer debe contener una suma de dinero valida")
-
-
+            }
         }
 
     }
+    private fun onTextChange(text:Int){
+        dineroEnCuenta.text=text.toString()
+
+    }
 }
+
+
+
+
+

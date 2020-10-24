@@ -4,7 +4,7 @@ import ar.edu.unlam.cajeroapp.data.UsuarioEntity
 
 interface UsuarioRepository {
 
-    fun save (usuario: Usuario)
+   suspend fun save (usuario: Usuario)
 
-    fun getAll(): List <Usuario>
+    suspend fun getAll(): List <UsuarioEntity>
 }
