@@ -1,4 +1,4 @@
-package ar.edu.unlam.cajeroapp.data
+package ar.edu.unlam.cajeroapp.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

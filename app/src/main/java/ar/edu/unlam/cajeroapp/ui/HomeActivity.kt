@@ -25,26 +25,41 @@ class HomeActivity : AppCompatActivity() {
         val miViewModel: HomeViewModel by viewModels()
 
 
-        miViewModel.estado.observe(this, Observer {onTextChange(it)})
+        miViewModel.estado.observe(this, Observer { dineroEnCuenta.text=it.toString() })
+        miViewModel.estadoDeposito.observe(this, Observer {
+            when(it){
+
+                HomeViewModel.EstadoDeposito.DEPOSITO_OK -> {
+                    dineroADepositar.setText("")
+                notificacion.text=getString(R.string.dinero_ok)
+                }
+
+                HomeViewModel.EstadoDeposito.STRING_VACIO ->notificacion.text=getString(R.string.suma_invalida)
+
+                HomeViewModel.EstadoDeposito.ERROR ->notificacion.text=getString(R.string.suma_invalida)
+
+                HomeViewModel.EstadoDeposito.EXTRACCION_OK -> {
+                    dineroADepositar.setText("")
+                    notificacion.text=getString(R.string.extraccion_ok)
+                }
+            }
+        })
 
 
 
         depositar.setOnClickListener() {
 
-                miViewModel.depositar(dineroADepositar.text.toString().toInt())
+                miViewModel.depositar(dineroADepositar.text.toString())
 
             extraer.setOnClickListener() {
 
-                    miViewModel.extraer(dineroAExtraer.text.toString().toInt())
+                    miViewModel.extraer(dineroAExtraer.text.toString())
 
             }
         }
 
     }
-    private fun onTextChange(text:Int){
-        dineroEnCuenta.text=text.toString()
 
-    }
 }
 
 

@@ -3,9 +3,8 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
-import ar.edu.unlam.cajeroapp.data.CajeroDatabase
-import ar.edu.unlam.cajeroapp.data.CuentaDao
-import ar.edu.unlam.cajeroapp.data.RoomUsuarioRepository
+import ar.edu.unlam.cajeroapp.data.room.CajeroDatabase
+import ar.edu.unlam.cajeroapp.data.impl.RoomUsuarioRepository
 import ar.edu.unlam.cajeroapp.ui.UsuarioViewModel
 
 
