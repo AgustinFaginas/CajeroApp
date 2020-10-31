@@ -3,23 +3,21 @@ package ar.edu.unlam.cajeroapp.ui
 import kotlinx.android.synthetic.main.activity_home.*
 
 
-import DatabaseViewModelFactory
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val usuarioViewModel: UsuarioViewModel by viewModels {
-            DatabaseViewModelFactory(
-                applicationContext
-            )
-        }
+        val usuarioViewModel: UsuarioViewModel by viewModel()
+
 
 
         val miViewModel: HomeViewModel by viewModels()
