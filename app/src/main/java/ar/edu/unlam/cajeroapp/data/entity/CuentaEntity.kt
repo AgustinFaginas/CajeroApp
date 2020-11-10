@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "cuenta")
-class CuentaEntity (
+public class CuentaEntity (
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -13,7 +13,7 @@ class CuentaEntity (
     @ColumnInfo(name = "dinero")
     val dinero :Int,
     @ColumnInfo(name = "usuario")
-    val usuarioId : Long
+    val usuario : Long
 
 
 )

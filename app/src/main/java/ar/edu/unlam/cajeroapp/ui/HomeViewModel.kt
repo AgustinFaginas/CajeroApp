@@ -1,13 +1,19 @@
 package ar.edu.unlam.cajeroapp.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ar.edu.unlam.cajeroapp.data.entity.CuentaEntity
+import ar.edu.unlam.cajeroapp.data.room.CuentaRepository
+import ar.edu.unlam.cajeroapp.data.room.UsuarioRepository
 import kotlinx.android.synthetic.main.activity_home.*
 import java.lang.Exception
 
-class HomeViewModel() : ViewModel() {
+class HomeViewModel( ) : ViewModel() {
+
+
 
     val estado = MutableLiveData<Int>(0)
     val estadoDeposito=MutableLiveData<EstadoDeposito>()
+
 
 
 

@@ -1,6 +1,5 @@
 package ar.edu.unlam.cajeroapp.ui
 
-import DatabaseViewModelFactory
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -14,7 +13,7 @@ class registrarseActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrarse)
 
-        val usuarioViewModel : UsuarioViewModel by viewModels{DatabaseViewModelFactory(applicationContext)}
+        val usuarioViewModel : UsuarioViewModel by viewModels()
 
 
         registrarse.setOnClickListener(){

@@ -3,4 +3,5 @@
     <string name="dinero_ok">Dinero depositado correctamente</string>
     <string name="suma_invalida">Ingrese una suma valida de dinero</string>
     <string name="extraccion_ok">Extraccion realizada correctamente</string>
+    <string name="usuario_no">Usuario no encontrado</string>
 </resources>

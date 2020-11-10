@@ -1,3 +1,3 @@
 package ar.edu.unlam.cajeroapp.model
 
-class Cuenta(val dinero: Int ,  val  usuarioId : Long)
+ class Cuenta(val dinero: Int ,  val  usuario : Long)

@@ -8,4 +8,8 @@ interface UsuarioRepository {
    suspend fun save (usuario: Usuario)
 
     suspend fun getAll(): List <UsuarioEntity>
+
+   suspend fun getById(id:Long) : Usuario
+
+    suspend fun getByName(nombre:String):Usuario
 }

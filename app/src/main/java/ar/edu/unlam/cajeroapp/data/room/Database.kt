@@ -4,9 +4,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import ar.edu.unlam.cajeroapp.data.entity.CuentaEntity
 import ar.edu.unlam.cajeroapp.data.entity.UsuarioEntity
+import ar.edu.unlam.cajeroapp.model.Cuenta
+import ar.edu.unlam.cajeroapp.model.Usuario
 
 @Database(
-    version = 2,
+    version = 1,
     entities = [UsuarioEntity::class , CuentaEntity::class]
 
 )

@@ -16,9 +16,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val usuarioViewModel: UsuarioViewModel by viewModel()
-
-
 
         val miViewModel: HomeViewModel by viewModels()
 

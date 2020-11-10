@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "usuario")
-class UsuarioEntity (
+ class UsuarioEntity (
 
 
     @PrimaryKey(autoGenerate = true)
@@ -13,7 +13,6 @@ class UsuarioEntity (
     val id:Long=0,
     @ColumnInfo(name = "nombre")
     val nombre : String
-
 )
 
 

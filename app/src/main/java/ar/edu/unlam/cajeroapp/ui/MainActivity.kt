@@ -1,6 +1,5 @@
 package ar.edu.unlam.cajeroapp.ui
 
-import DatabaseViewModelFactory
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

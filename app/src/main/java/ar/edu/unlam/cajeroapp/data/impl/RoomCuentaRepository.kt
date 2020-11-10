@@ -12,9 +12,16 @@ class RoomCuentaRepository(private val cuentaDao: CuentaDao) :
     override suspend fun save(cuenta: Cuenta) {
         val cuentaEntity = CuentaEntity(
             dinero = cuenta.dinero,
-            usuarioId = cuenta.usuarioId
+            usuario = cuenta.usuario
         )
         cuentaDao.saveCuenta(cuentaEntity)
     }
+
+    override suspend fun getAll(): List<CuentaEntity> {
+
+        return  cuentaDao.getAll()
+    }
+
+
 
 }
