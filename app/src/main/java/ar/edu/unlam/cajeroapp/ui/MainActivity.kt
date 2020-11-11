@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
             ingresar.setOnClickListener() {
 
-                val usuarioEntity = usuarioViewModel.getByName(nombreUsuario.toString())
+               usuarioViewModel.getByName(nombreUsuario.toString())
                 if (usuarioViewModel.usuario.value !=null){
                     val intent = Intent(this , HomeActivity::class.java)
                     startActivity(intent)
