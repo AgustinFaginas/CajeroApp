@@ -19,9 +19,14 @@ class MainActivity : AppCompatActivity() {
         ingresar.setOnClickListener(){
 
 
+            usuarioViewModel.getByName(nombreUsuario.toString())
+            if (usuarioViewModel.usuario.value != null) {
 
-            val intent = Intent (this,HomeActivity::class.java)
-            startActivity(intent)
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+            }else{
+                notificacion.text=getString(R.string.usuario_no)
+            }
         }
 
         registrarse.setOnClickListener(){

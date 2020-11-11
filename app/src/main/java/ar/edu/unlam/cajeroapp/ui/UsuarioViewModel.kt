@@ -14,7 +14,7 @@ class UsuarioViewModel(
 ) : ViewModel() {
 
     val listaUsuarios = MutableLiveData<List<UsuarioEntity>>()
-    val usuario =MutableLiveData<Usuario>()
+    val usuario =MutableLiveData<Usuario>(null)
 
     init {
         viewModelScope.launch { listaUsuarios.value = usuarioRepository.getAll() }
@@ -30,7 +30,12 @@ class UsuarioViewModel(
 
     fun getByName(nombre : String){
         viewModelScope.launch {
-            usuario.value= usuarioRepository.getByName(nombre)
+            try {
+                usuario.value= usuarioRepository.getByName(nombre)
+            }catch (e : Exception){
+                usuario.value = null
+            }
+
         }
     }
 
