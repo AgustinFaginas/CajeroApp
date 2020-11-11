@@ -7,7 +7,7 @@ import ar.edu.unlam.cajeroapp.data.room.UsuarioRepository
 import kotlinx.android.synthetic.main.activity_home.*
 import java.lang.Exception
 
-class HomeViewModel( ) : ViewModel() {
+class HomeViewModel(private val cuentaRepository: CuentaRepository ) : ViewModel() {
 
 
 

@@ -9,7 +9,7 @@ interface UsuarioRepository {
 
     suspend fun getAll(): List <UsuarioEntity>
 
-   suspend fun getById(id:Long) : Usuario
+   suspend fun getById(id:Long) : UsuarioEntity
 
-    suspend fun getByName(nombre:String):Usuario
+    suspend fun getByName(nombre:String):UsuarioEntity
 }

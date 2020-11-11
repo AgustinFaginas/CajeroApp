@@ -20,11 +20,11 @@ class RoomUsuarioRepository (private  val usuarioDao: UsuarioDao) :
      return  usuarioDao.getAll()
     }
 
-    override suspend fun getById(id: Long): Usuario {
+    override suspend fun getById(id: Long): UsuarioEntity {
         return  usuarioDao.getById(id)
     }
 
-    override suspend fun getByName(nombre: String): Usuario {
+    override suspend fun getByName(nombre: String): UsuarioEntity {
         return usuarioDao.getByName(nombre)
     }
 
