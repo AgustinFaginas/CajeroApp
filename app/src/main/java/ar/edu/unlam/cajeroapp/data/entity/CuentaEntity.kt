@@ -13,7 +13,7 @@ public class CuentaEntity (
     @ColumnInfo(name = "dinero")
     val dinero :Int,
     @ColumnInfo(name = "usuario")
-    val usuario : Long
+    val nombreUsuario : String
 
 
 )

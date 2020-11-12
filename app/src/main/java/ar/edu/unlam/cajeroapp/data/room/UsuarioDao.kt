@@ -20,6 +20,6 @@ interface UsuarioDao  {
    suspend fun getById (id:Long):UsuarioEntity
 
     @Query("SELECT * FROM usuario WHERE nombre=:nombre")
-    suspend fun getByName (nombre:String) :UsuarioEntity
+    suspend fun getByName (nombre:String) :List<UsuarioEntity>
 
 }

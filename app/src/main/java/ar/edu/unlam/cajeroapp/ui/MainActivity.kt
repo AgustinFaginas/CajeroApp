@@ -1,21 +1,19 @@
 package ar.edu.unlam.cajeroapp.ui
 
 import android.content.Intent
-import android.content.IntentSender
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
-import kotlinx.android.synthetic.main.activity_home.*
+
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.notificacion
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-
 class MainActivity : AppCompatActivity() {
 
-    private val usuarioViewModel : UsuarioViewModel by viewModel()
+    private val vm: MainViewModel by viewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,40 +22,43 @@ class MainActivity : AppCompatActivity() {
 
         setListeners()
 
-        usuarioViewModel.usuario.observe(this, Observer { it })
 
-
+        vm.estadoinicioSesion.observe(this, Observer {
+            when (it) {
+                MainViewModel.inicioSesion.OK -> {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    intent.putExtra(HomeActivity.USER_ID_PARAM, vm.usuario.value!!.id)
+                    startActivity(intent)
+                }
+                MainViewModel.inicioSesion.ERROR -> notificacion.text =
+                    getString(R.string.usuario_no)
+            }
+        })
 
 
     }
 
 
-        private fun setListeners(){
+    private fun setListeners() {
 
-            ingresar.setOnClickListener() {
+        ingresar.setOnClickListener() {
 
-               usuarioViewModel.getByName(nombreUsuario.toString())
-                if (usuarioViewModel.usuario.value !=null){
-                    val intent = Intent(this , HomeActivity::class.java)
-                    startActivity(intent)
-                }else{
+            vm.iniciarSesion(nombreUsuario.text.toString())
 
-                    notificacion.text = getString(R.string.usuario_no)
-                }
-
-            }
-
-            registrarse.setOnClickListener(){
-
-
-                val intent = Intent (this,RegistrarseActivity::class.java)
-                startActivity(intent)
-
-            }
         }
 
+        registrarse.setOnClickListener() {
 
+
+            val intent = Intent(this, RegistrarseActivity::class.java)
+            startActivity(intent)
+
+        }
     }
+
+
+}
+
 
 
 

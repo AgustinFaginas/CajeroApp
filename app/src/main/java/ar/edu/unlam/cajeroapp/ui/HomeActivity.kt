@@ -18,6 +18,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        miViewModel.buscarCuentaPorIdDeUsuario(intent.getLongExtra(USER_ID_PARAM,0))
         setListeners()
 
         miViewModel.estado.observe(this, Observer { dineroEnCuenta.text = it.toString() })
@@ -61,7 +62,13 @@ class HomeActivity : AppCompatActivity() {
 
         }
     }
+    companion object {
+        const val USER_ID_PARAM = "USER_ID_PARAM"
     }
+    }
+
+
+
 
 
 

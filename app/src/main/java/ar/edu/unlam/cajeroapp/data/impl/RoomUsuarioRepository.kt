@@ -25,7 +25,10 @@ class RoomUsuarioRepository (private  val usuarioDao: UsuarioDao) :
     }
 
     override suspend fun getByName(nombre: String): UsuarioEntity {
-        return usuarioDao.getByName(nombre)
+        val usuarios = usuarioDao.getByName(nombre)
+
+        return usuarios[0]
+
     }
 
 

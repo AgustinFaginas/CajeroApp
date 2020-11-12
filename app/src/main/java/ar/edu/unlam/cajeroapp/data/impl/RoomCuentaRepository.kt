@@ -1,5 +1,6 @@
 package ar.edu.unlam.cajeroapp.data.impl
 
+import androidx.lifecycle.MutableLiveData
 import ar.edu.unlam.cajeroapp.data.room.CuentaDao
 import ar.edu.unlam.cajeroapp.data.entity.CuentaEntity
 import ar.edu.unlam.cajeroapp.data.room.CuentaRepository
@@ -12,7 +13,7 @@ class RoomCuentaRepository(private val cuentaDao: CuentaDao) :
     override suspend fun save(cuenta: Cuenta) {
         val cuentaEntity = CuentaEntity(
             dinero = cuenta.dinero,
-            usuario = cuenta.usuario
+            nombreUsuario = cuenta.nombreUsuario
         )
         cuentaDao.saveCuenta(cuentaEntity)
     }
@@ -21,6 +22,15 @@ class RoomCuentaRepository(private val cuentaDao: CuentaDao) :
 
         return  cuentaDao.getAll()
     }
+
+    override suspend fun searchAccount(usuario: Long): CuentaEntity? {
+        val cuentas = cuentaDao.getAll()
+
+        return cuentas[0]
+
+    }
+
+
 
 
 

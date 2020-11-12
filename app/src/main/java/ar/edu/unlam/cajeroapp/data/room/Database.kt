@@ -2,10 +2,11 @@ package ar.edu.unlam.cajeroapp.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import ar.edu.unlam.cajeroapp.data.entity.CuentaEntity
 import ar.edu.unlam.cajeroapp.data.entity.UsuarioEntity
-import ar.edu.unlam.cajeroapp.model.Cuenta
-import ar.edu.unlam.cajeroapp.model.Usuario
+
 
 @Database(
     version = 1,
@@ -19,3 +20,4 @@ abstract class  CajeroDatabase : RoomDatabase() {
     abstract fun cuentaDato(): CuentaDao
 
 }
+

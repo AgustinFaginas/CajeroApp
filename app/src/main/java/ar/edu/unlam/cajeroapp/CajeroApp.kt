@@ -9,7 +9,8 @@ import ar.edu.unlam.cajeroapp.data.room.CajeroDatabase
 import ar.edu.unlam.cajeroapp.data.room.CuentaRepository
 import ar.edu.unlam.cajeroapp.data.room.UsuarioRepository
 import ar.edu.unlam.cajeroapp.ui.HomeViewModel
-import ar.edu.unlam.cajeroapp.ui.UsuarioViewModel
+import ar.edu.unlam.cajeroapp.ui.MainViewModel
+import ar.edu.unlam.cajeroapp.ui.RegistrarseViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
@@ -21,12 +22,13 @@ class CajeroApp : Application() {
     val appModule= module {
 
 
-        single { provideDatabase(get()).cuentaDato()}
-        single { provideDatabase(get()).usuarioDao()}
-        single <UsuarioRepository>{RoomUsuarioRepository(get())}
-        single <CuentaRepository> {RoomCuentaRepository(get())}
-        viewModel { HomeViewModel(get()) }
-        viewModel { UsuarioViewModel(get()) }
+        single { provideDatabase(get()).cuentaDato() }
+        single { provideDatabase(get()).usuarioDao() }
+        single<UsuarioRepository> { RoomUsuarioRepository(get()) }
+        single<CuentaRepository> { RoomCuentaRepository(get()) }
+        viewModel { HomeViewModel(get(), get()) }
+        viewModel { RegistrarseViewModel(get(),get()) }
+        viewModel { MainViewModel(get(),get()) }
     }
     override fun onCreate() {
         super.onCreate()
