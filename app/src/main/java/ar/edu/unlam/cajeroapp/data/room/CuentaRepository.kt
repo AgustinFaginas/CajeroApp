@@ -12,6 +12,9 @@ interface CuentaRepository {
 
     suspend fun searchAccount(usuario:Long) : CuentaEntity?
 
+    suspend fun depositar (idUsuario:Long , dinero : Int)
+
+    suspend fun extraer (idUsuario:Long , dinero : Int)
 
 
 

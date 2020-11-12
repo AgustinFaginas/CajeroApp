@@ -1,4 +1,5 @@
 package ar.edu.unlam.cajeroapp.ui
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,81 +9,86 @@ import ar.edu.unlam.cajeroapp.data.room.UsuarioRepository
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class HomeViewModel(private val cuentaRepository: CuentaRepository , private val usuarioRepository: UsuarioRepository) : ViewModel() {
-
+class HomeViewModel(
+    private val cuentaRepository: CuentaRepository,
+    private val usuarioRepository: UsuarioRepository
+) : ViewModel() {
 
 
     val estado = MutableLiveData<Int>(0)
     val cuenta = MutableLiveData<CuentaEntity>()
-    val estadoDeposito=MutableLiveData<EstadoDeposito>()
+    val estadoDeposito = MutableLiveData<EstadoDeposito>()
 
 
     fun buscarCuentaPorIdDeUsuario(id: Long) {
         viewModelScope.launch {
 
-           val cuentaBuscada = cuentaRepository.searchAccount(id)
-
-                cuenta.value = cuentaBuscada
+            val cuentaBuscada = cuentaRepository.searchAccount(id)
+            cuenta.value = cuentaBuscada
+            if (cuentaBuscada != null) {
+                estado.value = cuentaBuscada.dinero
             }
+        }
 
     }
 
 
+    fun depositar(dinero: String, idUsuario: Long) {
 
-    fun obtenerCantidadDeDinero() : Int {
-
-        return cuenta.value?.dinero ?:0
-    }
-
-    fun depositar(dinero: String ) {
-
-        if (dinero !=""){
+        if (dinero != "") {
             try {
-              viewModelScope.launch {
-
-              }
+                var total = estado.value?.plus(dinero.toInt())
+                estado.postValue(estado.value?.plus(dinero.toInt()))
                 estadoDeposito.postValue(EstadoDeposito.DEPOSITO_OK)
-            }catch (e:Exception){
+                viewModelScope.launch {
+                    if (total != null) {
+                        cuentaRepository.depositar(idUsuario,total)
+                    }
+                }
+            } catch (e: Exception) {
                 estadoDeposito.postValue(EstadoDeposito.ERROR)
             }
 
-        } else{
+        } else {
 
             estadoDeposito.postValue(EstadoDeposito.STRING_VACIO)
         }
     }
 
-    fun extraer (dinero : String){
+    fun extraer(dinero: String , idUsuario: Long) {
 
-        val estadoActual=obtenerCantidadDeDinero()
-        if (dinero !=""){
+        val estadoActual = estado.value
+        if (dinero != "") {
             try {
-                if (dinero.toInt()<estadoActual) {
+                if (dinero.toInt() < estadoActual!!) {
                     var total = 0
                     estado.value?.run {
                         total = this - dinero.toInt()
                     }
                     estado.value = total
                     estadoDeposito.postValue(EstadoDeposito.EXTRACCION_OK)
-                }else{
+                    viewModelScope.launch {
+                        cuentaRepository.extraer(idUsuario,dinero.toInt())
+                    }
+
+                } else {
                     estadoDeposito.postValue(EstadoDeposito.ERROR)
                 }
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 estadoDeposito.postValue(EstadoDeposito.ERROR)
             }
 
-        } else{
+        } else {
 
             estadoDeposito.postValue(EstadoDeposito.STRING_VACIO)
         }
 
 
+    }
 
-        }
 
-
-    public enum class EstadoDeposito(){
-       DEPOSITO_OK,
+    public enum class EstadoDeposito() {
+        DEPOSITO_OK,
         STRING_VACIO,
         ERROR,
         EXTRACCION_OK
@@ -90,7 +96,7 @@ class HomeViewModel(private val cuentaRepository: CuentaRepository , private val
     }
 
 
-    }
+}
 
 
 

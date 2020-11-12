@@ -30,8 +30,13 @@ class RoomCuentaRepository(private val cuentaDao: CuentaDao) :
 
     }
 
+    override suspend fun depositar(idUsuario: Long, dinero: Int) {
+        return cuentaDao.depositar(idUsuario,dinero)
+    }
 
-
+    override suspend fun extraer(idUsuario: Long, dinero: Int) {
+        return cuentaDao.extraer(idUsuario,dinero)
+    }
 
 
 }

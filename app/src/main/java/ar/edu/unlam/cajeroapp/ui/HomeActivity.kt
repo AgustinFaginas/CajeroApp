@@ -50,15 +50,16 @@ class HomeActivity : AppCompatActivity() {
 
     fun setListeners(){
 
+        var idUsuario = intent.getLongExtra(USER_ID_PARAM,0)
         depositar.setOnClickListener() {
 
-            miViewModel.depositar(dineroADepositar.text.toString())
+            miViewModel.depositar(dineroADepositar.text.toString(),idUsuario)
 
         }
 
         extraer.setOnClickListener() {
 
-            miViewModel.extraer(dineroAExtraer.text.toString())
+            miViewModel.extraer(dineroAExtraer.text.toString(),idUsuario)
 
         }
     }
