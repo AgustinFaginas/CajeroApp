@@ -22,9 +22,6 @@ class MainViewModel(private val usuarioRepository: UsuarioRepository,
             usuario.value = user
             if (user != null) {
                 estadoinicioSesion.value = inicioSesion.OK
-
-
-
             } else {
                 estadoinicioSesion.value = inicioSesion.ERROR
             }

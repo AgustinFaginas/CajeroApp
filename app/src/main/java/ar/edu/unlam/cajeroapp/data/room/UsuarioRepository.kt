@@ -11,5 +11,5 @@ interface UsuarioRepository {
 
    suspend fun getById(id:Long) : UsuarioEntity
 
-    suspend fun getByName(nombre:String) : UsuarioEntity?
+    suspend fun getByName(nombre:String) : UsuarioEntity
 }

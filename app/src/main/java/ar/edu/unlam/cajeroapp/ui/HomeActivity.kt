@@ -18,8 +18,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        miViewModel.buscarCuentaPorIdDeUsuario(intent.getLongExtra(USER_ID_PARAM, 0))
-        setListeners()
 
         miViewModel.estado.observe(this, Observer { dineroEnCuenta.text = it.toString() })
         miViewModel.estadoDeposito.observe(this, Observer {
@@ -42,6 +40,13 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         })
+        miViewModel.buscarCuentaPorIdDeUsuario(intent.getLongExtra(USER_ID_PARAM, 200))
+        setListeners()
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 
 
@@ -60,9 +65,8 @@ class HomeActivity : AppCompatActivity() {
 
         }
         salir.setOnClickListener() {
+            dineroEnCuenta.text = "0"
             finish()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
         }
     }
 

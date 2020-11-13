@@ -41,4 +41,9 @@ class RegistrarseActivity: AppCompatActivity() {
         startActivity(intent)
     }
 
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
+
 }

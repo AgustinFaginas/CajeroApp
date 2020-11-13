@@ -22,15 +22,8 @@ class HomeViewModel(
 
     fun buscarCuentaPorIdDeUsuario(id: Long) {
         viewModelScope.launch {
-
-            val cuentaBuscada = cuentaRepository.searchAccount(id)
-            cuenta.value = cuentaBuscada
-
-            var total = 0
-            estado.value?.run {
-                total = cuenta.value!!.dinero
-            }
-            estado.value = total
+            cuenta.value = cuentaRepository.searchAccount(id)
+            estado.value = cuenta.value!!.dinero
 
         }
 
