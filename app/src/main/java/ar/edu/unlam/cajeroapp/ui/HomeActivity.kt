@@ -1,7 +1,7 @@
 package ar.edu.unlam.cajeroapp.ui
 
+import android.content.Intent
 import kotlinx.android.synthetic.main.activity_home.*
-
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +18,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        miViewModel.buscarCuentaPorIdDeUsuario(intent.getLongExtra(USER_ID_PARAM,0))
+        miViewModel.buscarCuentaPorIdDeUsuario(intent.getLongExtra(USER_ID_PARAM, 0))
         setListeners()
 
         miViewModel.estado.observe(this, Observer { dineroEnCuenta.text = it.toString() })
@@ -45,28 +45,31 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
+    fun setListeners() {
 
-
-
-    fun setListeners(){
-
-        var idUsuario = intent.getLongExtra(USER_ID_PARAM,0)
+        var idUsuario = intent.getLongExtra(USER_ID_PARAM, 0)
         depositar.setOnClickListener() {
 
-            miViewModel.depositar(dineroADepositar.text.toString(),idUsuario)
+            miViewModel.depositar(dineroADepositar.text.toString(), idUsuario)
 
         }
 
         extraer.setOnClickListener() {
 
-            miViewModel.extraer(dineroAExtraer.text.toString(),idUsuario)
+            miViewModel.extraer(dineroAExtraer.text.toString(), idUsuario)
 
         }
+        salir.setOnClickListener() {
+            finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
+
     companion object {
         const val USER_ID_PARAM = "USER_ID_PARAM"
     }
-    }
+}
 
 
 

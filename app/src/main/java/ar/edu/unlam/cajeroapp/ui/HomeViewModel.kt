@@ -25,9 +25,13 @@ class HomeViewModel(
 
             val cuentaBuscada = cuentaRepository.searchAccount(id)
             cuenta.value = cuentaBuscada
-            if (cuentaBuscada != null) {
-                estado.value = cuentaBuscada.dinero
+
+            var total = 0
+            estado.value?.run {
+                total = cuenta.value!!.dinero
             }
+            estado.value = total
+
         }
 
     }
@@ -37,12 +41,12 @@ class HomeViewModel(
 
         if (dinero != "") {
             try {
-                var total = estado.value?.plus(dinero.toInt())
-                estado.postValue(estado.value?.plus(dinero.toInt()))
+                var total = dinero.toInt() + (cuenta.value?.dinero ?: 0)
+                estado.value = total
                 estadoDeposito.postValue(EstadoDeposito.DEPOSITO_OK)
                 viewModelScope.launch {
                     if (total != null) {
-                        cuentaRepository.depositar(idUsuario,total)
+                        cuentaRepository.depositar(idUsuario, total)
                     }
                 }
             } catch (e: Exception) {
@@ -55,7 +59,7 @@ class HomeViewModel(
         }
     }
 
-    fun extraer(dinero: String , idUsuario: Long) {
+    fun extraer(dinero: String, idUsuario: Long) {
 
         val estadoActual = estado.value
         if (dinero != "") {
@@ -68,7 +72,7 @@ class HomeViewModel(
                     estado.value = total
                     estadoDeposito.postValue(EstadoDeposito.EXTRACCION_OK)
                     viewModelScope.launch {
-                        cuentaRepository.extraer(idUsuario,dinero.toInt())
+                        cuentaRepository.extraer(idUsuario, dinero.toInt())
                     }
 
                 } else {
