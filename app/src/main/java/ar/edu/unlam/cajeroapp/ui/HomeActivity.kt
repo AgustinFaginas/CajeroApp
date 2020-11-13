@@ -19,7 +19,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
 
-        miViewModel.estado.observe(this, Observer { dineroEnCuenta.text = it.toString() })
+
+        miViewModel.cuenta.observe(this, Observer { dineroEnCuenta.text = it.dinero.toString() })
         miViewModel.estadoDeposito.observe(this, Observer {
             when (it) {
 

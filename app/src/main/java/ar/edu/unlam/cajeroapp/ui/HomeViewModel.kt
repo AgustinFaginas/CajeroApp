@@ -15,7 +15,6 @@ class HomeViewModel(
 ) : ViewModel() {
 
 
-    val estado = MutableLiveData<Int>(0)
     val cuenta = MutableLiveData<CuentaEntity>()
     val estadoDeposito = MutableLiveData<EstadoDeposito>()
 
@@ -23,8 +22,6 @@ class HomeViewModel(
     fun buscarCuentaPorIdDeUsuario(id: Long) {
         viewModelScope.launch {
             cuenta.value = cuentaRepository.searchAccount(id)
-            estado.value = cuenta.value!!.dinero
-
         }
 
     }
@@ -34,13 +31,10 @@ class HomeViewModel(
 
         if (dinero != "") {
             try {
-                var total = dinero.toInt() + (cuenta.value?.dinero ?: 0)
-                estado.value = total
                 estadoDeposito.postValue(EstadoDeposito.DEPOSITO_OK)
                 viewModelScope.launch {
-                    if (total != null) {
-                        cuentaRepository.depositar(idUsuario, total)
-                    }
+                    cuentaRepository.depositar(idUsuario, dinero.toInt())
+
                 }
             } catch (e: Exception) {
                 estadoDeposito.postValue(EstadoDeposito.ERROR)
@@ -54,15 +48,9 @@ class HomeViewModel(
 
     fun extraer(dinero: String, idUsuario: Long) {
 
-        val estadoActual = estado.value
         if (dinero != "") {
             try {
-                if (dinero.toInt() < estadoActual!!) {
-                    var total = 0
-                    estado.value?.run {
-                        total = this - dinero.toInt()
-                    }
-                    estado.value = total
+                if (dinero.toInt() < cuenta.value?.dinero ?: 0) {
                     estadoDeposito.postValue(EstadoDeposito.EXTRACCION_OK)
                     viewModelScope.launch {
                         cuentaRepository.extraer(idUsuario, dinero.toInt())
