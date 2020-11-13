@@ -93,32 +93,18 @@
         </Button>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="30dp">
 
-        <EditText
-            android:id="@+id/dineroATransferir"
-            android:layout_width="208dp"
-            android:layout_height="50dp"
-            android:hint="Dinero a transferir"
-            android:inputType="number"
-            ></EditText>
+    <Button
+        android:id="@+id/transferir"
+        android:layout_width="235dp"
+        android:layout_height="84dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:hint="Trasferir"
+        android:textAlignment="center"
+        android:textSize="30dp">
 
-        <Button
-            android:id="@+id/transferir"
-            android:layout_width="135dp"
-            android:layout_height="54dp"
-            android:hint="Trasferir"
-            android:layout_marginLeft="10dp"
-            >
-
-        </Button>
-    </LinearLayout>
+    </Button>
 
     <TextView
         android:id="@+id/notificacion"
@@ -134,6 +120,7 @@
         android:layout_marginLeft="300dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="SALIR"
         >
 

@@ -33,7 +33,10 @@ class HomeViewModel(
             try {
                 estadoDeposito.postValue(EstadoDeposito.DEPOSITO_OK)
                 viewModelScope.launch {
-                    cuentaRepository.depositar(idUsuario, dinero.toInt())
+
+                    val cuentaAct = CuentaEntity(id = cuenta.value!!.id, dinero = (cuenta.value!!.dinero + dinero.toInt()), idUsuario = cuenta.value!!.idUsuario)
+                    cuentaRepository.update(cuentaAct)
+                    cuenta.value = cuentaAct
 
                 }
             } catch (e: Exception) {
@@ -53,7 +56,9 @@ class HomeViewModel(
                 if (dinero.toInt() < cuenta.value?.dinero ?: 0) {
                     estadoDeposito.postValue(EstadoDeposito.EXTRACCION_OK)
                     viewModelScope.launch {
-                        cuentaRepository.extraer(idUsuario, dinero.toInt())
+                        val cuentaAct = CuentaEntity(id = cuenta.value!!.id, dinero = (cuenta.value!!.dinero - dinero.toInt()), idUsuario = cuenta.value!!.idUsuario)
+                        cuentaRepository.update(cuentaAct)
+                        cuenta.value = cuentaAct
                     }
 
                 } else {

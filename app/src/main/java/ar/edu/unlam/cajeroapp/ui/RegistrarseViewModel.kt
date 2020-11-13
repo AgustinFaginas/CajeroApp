@@ -19,7 +19,7 @@ class RegistrarseViewModel(
 
         viewModelScope.launch {
             usuarioRepository.save(usuario)
-            val nuevaCuenta = Cuenta(0, usuario.nombre)
+            val nuevaCuenta = Cuenta(0, usuarioRepository.getByName(usuario.nombre).id )
             cuentaRepository.save(nuevaCuenta)
 
         }

@@ -11,9 +11,9 @@ public class CuentaEntity (
     @ColumnInfo(name = "id")
     val id:Long=0,
     @ColumnInfo(name = "dinero")
-    val dinero :Int,
-    @ColumnInfo(name = "usuario")
-    val nombreUsuario : String
+    var dinero :Int,
+    @ColumnInfo(name = "idUsuario")
+    val idUsuario : Long
 
 
 )

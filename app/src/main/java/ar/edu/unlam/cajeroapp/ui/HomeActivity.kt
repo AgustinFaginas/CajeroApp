@@ -41,7 +41,8 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         })
-        miViewModel.buscarCuentaPorIdDeUsuario(intent.getLongExtra(USER_ID_PARAM, 200))
+        val idUsuario = intent.getLongExtra(USER_ID_PARAM,200)
+        miViewModel.buscarCuentaPorIdDeUsuario(idUsuario)
         setListeners()
     }
 
@@ -68,6 +69,11 @@ class HomeActivity : AppCompatActivity() {
         salir.setOnClickListener() {
             dineroEnCuenta.text = "0"
             finish()
+        }
+        transferir.setOnClickListener(){
+            val intent = Intent(this, TransferenciaActivity::class.java)
+            intent.putExtra(HomeActivity.USER_ID_PARAM,idUsuario)
+            startActivity(intent)
         }
     }
 

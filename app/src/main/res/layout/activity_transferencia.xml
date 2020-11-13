@@ -1,0 +1,98 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#12DAA1"
+    >
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CAJEROAPP"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-black"
+        android:background="#FFC107"
+
+        ></TextView>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="-Ingrese el nombre de usuario al que decsea transferir el dinero "
+    android:gravity="center"
+    android:fontFamily="sans-serif-black"
+    android:background="#FFC107"
+    android:textSize="25dp"
+    android:layout_marginTop="70dp"
+    >
+
+</TextView>
+
+    <EditText
+        android:id="@+id/nombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Nombre usuario"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        ></EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-Ingrese el nombre de usuario al que decsea transferir el dinero "
+        android:gravity="center"
+        android:fontFamily="sans-serif-black"
+        android:background="#FFC107"
+        android:textSize="25dp"
+        >
+
+    </TextView>
+
+
+
+    <EditText
+        android:id="@+id/monto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese monto a transferir"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        ></EditText>
+
+    <Button
+        android:id="@+id/transferir"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:hint="Transferir"
+        android:layout_marginTop="50dp"
+        android:background="#FFC107"
+        >
+
+    </Button>
+
+
+    <TextView
+        android:id="@+id/notificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        >
+
+    </TextView>
+
+
+
+
+
+
+
+
+</LinearLayout>
+

@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".ui.HomeActivity"></activity>
         <activity android:name=".ui.RegistrarseActivity"></activity>
+        <activity android:name=".ui.TransferenciaActivity"></activity>
     </application>
 
 

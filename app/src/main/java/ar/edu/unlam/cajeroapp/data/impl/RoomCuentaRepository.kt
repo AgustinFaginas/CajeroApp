@@ -13,7 +13,7 @@ class RoomCuentaRepository(private val cuentaDao: CuentaDao) :
     override suspend fun save(cuenta: Cuenta) {
         val cuentaEntity = CuentaEntity(
             dinero = cuenta.dinero,
-            nombreUsuario = cuenta.nombreUsuario
+            idUsuario = cuenta.idUsuario
         )
         cuentaDao.saveCuenta(cuentaEntity)
     }
@@ -24,18 +24,14 @@ class RoomCuentaRepository(private val cuentaDao: CuentaDao) :
     }
 
     override suspend fun searchAccount(usuario: Long): CuentaEntity? {
-        val cuentas = cuentaDao.getAll()
+        val cuentas = cuentaDao.searchAccount(usuario)
 
         return cuentas[0]
 
     }
 
-    override suspend fun depositar(idUsuario: Long, dinero: Int) {
-        return cuentaDao.depositar(idUsuario,dinero)
-    }
-
-    override suspend fun extraer(idUsuario: Long, dinero: Int) {
-        return cuentaDao.extraer(idUsuario,dinero)
+    override suspend fun update(cuentaEntity: CuentaEntity) {
+        return cuentaDao.update(cuentaEntity)
     }
 
 
