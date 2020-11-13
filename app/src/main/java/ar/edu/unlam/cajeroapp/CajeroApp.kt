@@ -11,6 +11,7 @@ import ar.edu.unlam.cajeroapp.data.room.UsuarioRepository
 import ar.edu.unlam.cajeroapp.ui.HomeViewModel
 import ar.edu.unlam.cajeroapp.ui.MainViewModel
 import ar.edu.unlam.cajeroapp.ui.RegistrarseViewModel
+import ar.edu.unlam.cajeroapp.ui.TrasnferenciaViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
@@ -29,6 +30,7 @@ class CajeroApp : Application() {
         viewModel { HomeViewModel(get(), get()) }
         viewModel { RegistrarseViewModel(get(),get()) }
         viewModel { MainViewModel(get(),get()) }
+        viewModel { TrasnferenciaViewModel(get(),get()) }
     }
     override fun onCreate() {
         super.onCreate()
