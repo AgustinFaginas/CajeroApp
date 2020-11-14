@@ -5,4 +5,5 @@
     <string name="extraccion_ok">Extraccion realizada correctamente</string>
     <string name="usuario_no">Usuario no encontrado</string>
     <string name="transferencia_ok">Transferencia realizada correctamente</string>
+    <string name="transferencia_error">Datos ingresados incorrectos</string>
 </resources>

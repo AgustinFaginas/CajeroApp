@@ -8,6 +8,7 @@ import ar.edu.unlam.cajeroapp.data.room.CuentaRepository
 import ar.edu.unlam.cajeroapp.data.room.UsuarioRepository
 import ar.edu.unlam.cajeroapp.model.Cuenta
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class MainViewModel(private val usuarioRepository: UsuarioRepository,
                     private val cuentaRepository: CuentaRepository
@@ -18,13 +19,20 @@ class MainViewModel(private val usuarioRepository: UsuarioRepository,
 
     fun iniciarSesion(username: String) {
         viewModelScope.launch {
-            val user = usuarioRepository.getByName(username)
-            usuario.value = user
-            if (user != null) {
-                estadoinicioSesion.value = inicioSesion.OK
-            } else {
-                estadoinicioSesion.value = inicioSesion.ERROR
+            try {
+
+                val user = usuarioRepository.getByName(username)
+                usuario.value = user
+                if (user != null) {
+                    estadoinicioSesion.value = inicioSesion.OK
+                } else {
+                    estadoinicioSesion.value = inicioSesion.ERROR
+                }
+
+            }catch (e : Exception){
+                estadoinicioSesion.postValue(inicioSesion.ERROR)
             }
+
         }
     }
 
