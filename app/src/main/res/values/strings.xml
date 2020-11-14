@@ -6,4 +6,5 @@
     <string name="usuario_no">Usuario no encontrado</string>
     <string name="transferencia_ok">Transferencia realizada correctamente</string>
     <string name="transferencia_error">Datos ingresados incorrectos</string>
+    <string name="nombre_ya_registrado">Nombre ya registrado</string>
 </resources>

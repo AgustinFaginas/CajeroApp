@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
 import ar.edu.unlam.cajeroapp.model.Cuenta
 import ar.edu.unlam.cajeroapp.model.Usuario
@@ -18,6 +19,20 @@ class RegistrarseActivity: AppCompatActivity() {
         setContentView(R.layout.activity_registrarse)
 
         setListeners()
+
+        registrarseViewModel.estadoRegistracion.observe(this, Observer {
+            when (it){
+                RegistrarseViewModel.EstadoRegistro.OK -> {
+                    nombreUsuario.setText("")
+                    val intent = Intent(this ,MainActivity::class.java)
+                    startActivity(intent)
+                }
+                RegistrarseViewModel.EstadoRegistro.ERROR -> {
+                    nombreUsuario.setText("")
+                    notificacion.text = getString(R.string.nombre_ya_registrado)
+                }
+            }
+        })
 
     }
     fun setListeners(){
@@ -35,15 +50,7 @@ class RegistrarseActivity: AppCompatActivity() {
 
         registrarseViewModel.save(usuario)
 
-
-        val intent = Intent(this ,MainActivity::class.java)
-
-        startActivity(intent)
     }
 
-    override fun onBackPressed() {
-        finish()
-        super.onBackPressed()
-    }
 
 }

@@ -55,5 +55,15 @@
 
     </Button>
 
+    <TextView
+        android:id="@+id/notificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        >
+
+    </TextView>
+
 
 </LinearLayout>
