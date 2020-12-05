@@ -9,9 +9,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import ar.edu.unlam.cajeroapp.R
-import kotlinx.android.synthetic.main.activity_datos_transferencia.*
-import kotlinx.android.synthetic.main.activity_datos_transferencia.notificacion
-import kotlinx.android.synthetic.main.activity_transferencia.*
+import ar.edu.unlam.cajeroapp.databinding.ActivityDatosTransferenciaBinding
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -22,16 +20,19 @@ class DatosTrasnferenciaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_datos_transferencia)
-
-        this.usuarioEntrada.text = intent.extras!!.getString("nombreUsuarioReceptor")
-        this.usuarioSalida.text = intent.extras!!.getString("nombreUsuarioSalida")
-        this.montoTrasnferencia.text = intent.extras!!.getString("monto")
+        val binding = ActivityDatosTransferenciaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
-        guardar.setOnClickListener {
+        binding.usuarioEntrada.text = intent.extras!!.getString("nombreUsuarioReceptor")
+        binding.usuarioSalida.text = intent.extras!!.getString("nombreUsuarioSalida")
+        binding.montoTrasnferencia.text = intent.extras!!.getString("monto")
+
+
+
+        binding.guardar.setOnClickListener {
             tomarYGuardarScreenshot()
-            notificacion.text = getString(R.string.screenshot_ok)
+            binding.notificacion.text = getString(R.string.screenshot_ok)
         }
     }
 

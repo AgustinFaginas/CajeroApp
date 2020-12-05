@@ -1,9 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#12DAA1"
     android:orientation="vertical"
-    android:id="@+id/container">
+    android:id="@+id/container"
+    tools:context=".ui.DatosTrasnferenciaActivity">
 
 
     <TextView

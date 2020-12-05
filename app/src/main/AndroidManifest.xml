@@ -3,6 +3,8 @@
     package="ar.edu.unlam.cajeroapp">
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".CajeroApp"

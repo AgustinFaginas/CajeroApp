@@ -1,13 +1,16 @@
 package ar.edu.unlam.cajeroapp.ui
 
 import android.content.Intent
-import kotlinx.android.synthetic.main.activity_home.*
+
 
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
+
+import ar.edu.unlam.cajeroapp.databinding.ActivityHomeBinding
+import kotlinx.android.synthetic.main.activity_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -17,27 +20,29 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        val binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
 
-        miViewModel.cuenta.observe(this, Observer { dineroEnCuenta.text = it.dinero.toString() })
+        miViewModel.cuenta.observe(this, Observer { binding.dineroEnCuenta.text = it.dinero.toString() })
         miViewModel.estadoDeposito.observe(this, Observer {
             when (it) {
 
                 HomeViewModel.EstadoDeposito.DEPOSITO_OK -> {
-                    dineroADepositar.setText("")
-                    notificacion.text = getString(R.string.dinero_ok)
+                    binding.dineroADepositar.setText("")
+                    binding.notificacion.text = getString(R.string.dinero_ok)
                 }
 
-                HomeViewModel.EstadoDeposito.STRING_VACIO -> notificacion.text =
+                HomeViewModel.EstadoDeposito.STRING_VACIO -> binding.notificacion.text =
                     getString(R.string.suma_invalida)
 
-                HomeViewModel.EstadoDeposito.ERROR -> notificacion.text =
+                HomeViewModel.EstadoDeposito.ERROR -> binding.notificacion.text =
                     getString(R.string.suma_invalida)
 
                 HomeViewModel.EstadoDeposito.EXTRACCION_OK -> {
-                    dineroADepositar.setText("")
-                    notificacion.text = getString(R.string.extraccion_ok)
+                    binding.dineroADepositar.setText("")
+                    binding.notificacion.text = getString(R.string.extraccion_ok)
                 }
             }
         })

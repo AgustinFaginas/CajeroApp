@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
-
+import ar.edu.unlam.cajeroapp.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.notificacion
+
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         setListeners()
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra(HomeActivity.USER_ID_PARAM, vm.usuario.value!!.id)
                     startActivity(intent)
                 }
-                MainViewModel.estadoInicioSesion.ERROR -> notificacion.text =
+                MainViewModel.estadoInicioSesion.ERROR ->binding.notificacion.text =
                     getString(R.string.usuario_no)
             }
         })
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setListeners() {
+
 
         ingresar.setOnClickListener() {
 
