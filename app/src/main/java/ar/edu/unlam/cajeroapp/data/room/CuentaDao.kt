@@ -12,19 +12,15 @@ interface CuentaDao {
 
 
     @Query(value = "SELECT * FROM  cuenta")
-    suspend fun getAll():List<CuentaEntity>
+    suspend fun getAll(): List<CuentaEntity>
 
     @Insert
     suspend fun saveCuenta(entity: CuentaEntity)
 
     @Query(value = "SELECT * FROM cuenta WHERE idUsuario=:usuario")
-    suspend fun searchAccount(usuario :Long) : List<CuentaEntity>
+    suspend fun searchAccount(usuario: Long): List<CuentaEntity>
 
     @Update
-    suspend fun update (cuentaEntity: CuentaEntity)
-
-
-
-
+    suspend fun update(cuentaEntity: CuentaEntity)
 
 }

@@ -54,9 +54,10 @@
         <Button
             android:id="@+id/depositar"
             android:layout_width="135dp"
-            android:layout_height="54dp"
+            android:layout_height="wrap_content"
             android:hint="Depositar"
             android:layout_marginLeft="10dp"
+            android:background="#FFC107"
             >
 
         </Button>
@@ -85,9 +86,10 @@
         <Button
             android:id="@+id/extraer"
             android:layout_width="135dp"
-            android:layout_height="54dp"
+            android:layout_height="wrap_content"
             android:hint="Extraer"
             android:layout_marginLeft="10dp"
+            android:background="#FFC107"
             >
 
         </Button>
@@ -97,12 +99,14 @@
     <Button
         android:id="@+id/transferir"
         android:layout_width="235dp"
-        android:layout_height="84dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:hint="Trasferir"
         android:textAlignment="center"
-        android:textSize="30dp">
+        android:textSize="30dp"
+        android:layout_marginTop="30dp"
+        android:background="#FFC107">
 
     </Button>
 
@@ -122,6 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="SALIR"
+        android:background="#FFC107"
         >
 
     </Button>

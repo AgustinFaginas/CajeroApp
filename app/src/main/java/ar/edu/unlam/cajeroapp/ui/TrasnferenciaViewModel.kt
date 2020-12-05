@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ar.edu.unlam.cajeroapp.data.entity.CuentaEntity
+import ar.edu.unlam.cajeroapp.data.entity.UsuarioEntity
 import ar.edu.unlam.cajeroapp.data.room.CuentaRepository
 import ar.edu.unlam.cajeroapp.data.room.UsuarioRepository
 import kotlinx.coroutines.launch
@@ -17,11 +18,15 @@ class TrasnferenciaViewModel(
 
     val estadoTrasferencia = MutableLiveData<EstadoTransferencia>()
     val cuenta = MutableLiveData<CuentaEntity>()
+    val usuario = MutableLiveData<UsuarioEntity>()
+    val ultUsuarioTrasferido = MutableLiveData<String>()
+    val ultMontoTransferido = MutableLiveData<String>()
 
 
     fun buscarCuentaPorIdDeUsuario(id: Long) {
         viewModelScope.launch {
             cuenta.value = cuentaRepository.searchAccount(id)
+            usuario.value = usuarioRepository.getById(id)
         }
 
     }
@@ -32,37 +37,43 @@ class TrasnferenciaViewModel(
                 if (monto.toInt() < cuenta.value?.dinero ?: 0) {
                     viewModelScope.launch {
 
-                        val cuentaExtraccion = CuentaEntity(
-                            id = cuenta.value!!.id,
-                            dinero = (cuenta.value!!.dinero - monto.toInt()),
-                            idUsuario = cuenta.value!!.idUsuario
-                        )
+                        usuarioRepository.getAll()
+                            .find { it.nombre == nombreUsuarioATransferir }
+                            .let {
+                                if (it == null) {
+                                    estadoTrasferencia.postValue(EstadoTransferencia.USUARIONOENCONTRADO)
+                                } else {
+                                    val cuentaExtraccion = CuentaEntity(
+                                        id = cuenta.value!!.id,
+                                        dinero = (cuenta.value!!.dinero - monto.toInt()),
+                                        idUsuario = cuenta.value!!.idUsuario
+                                    )
 
 
-                        cuentaRepository.update(cuentaExtraccion)
+                                    cuentaRepository.update(cuentaExtraccion)
+                                    val cuentaATrasferir = cuentaRepository.searchAccount(
+                                        usuarioRepository.getByName(nombreUsuarioATransferir).id
+                                    )
 
 
-                        val usuarioATrasferir =
-                            usuarioRepository.getByName(nombreUsuarioATransferir)
+                                    val cuentaDeposito = CuentaEntity(
+                                        id = cuentaATrasferir!!.id,
+                                        dinero = cuentaATrasferir.dinero + monto.toInt(),
+                                        idUsuario = cuentaATrasferir.idUsuario
+                                    )
 
 
-                        val cuentaATrasferir =
-                            cuentaRepository.searchAccount(usuarioATrasferir.id)
+                                    cuentaRepository.update(cuentaDeposito)
 
+                                    estadoTrasferencia.postValue(EstadoTransferencia.OK)
+                                    ultMontoTransferido.postValue(monto)
+                                    ultUsuarioTrasferido.postValue(nombreUsuarioATransferir)
+                                }
+                            }
 
-                        val cuentaDeposito = CuentaEntity(
-                            id = cuentaATrasferir!!.id,
-                            dinero = cuentaATrasferir.dinero + monto.toInt(),
-                            idUsuario = cuentaATrasferir.idUsuario
-                        )
-
-
-                        cuentaRepository.update(cuentaDeposito)
-
-                        estadoTrasferencia.postValue(EstadoTransferencia.OK)
                     }
                 } else {
-                    estadoTrasferencia.postValue(EstadoTransferencia.ERROR)
+                    estadoTrasferencia.postValue(EstadoTransferencia.DINEROINSUFICIENTE)
                 }
             } catch (e: Exception) {
                 estadoTrasferencia.postValue(EstadoTransferencia.ERROR)
@@ -74,7 +85,9 @@ class TrasnferenciaViewModel(
 
     enum class EstadoTransferencia {
         OK,
-        ERROR
+        ERROR,
+        DINEROINSUFICIENTE,
+        USUARIONOENCONTRADO
     }
 
 }

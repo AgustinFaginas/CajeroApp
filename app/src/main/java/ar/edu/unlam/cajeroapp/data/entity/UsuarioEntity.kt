@@ -5,14 +5,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "usuario")
- class UsuarioEntity (
+class UsuarioEntity(
 
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name ="id")
-    val id:Long=0,
+    @ColumnInfo(name = "id")
+    val id: Long = 0,
     @ColumnInfo(name = "nombre")
-    val nombre : String
+    val nombre: String
 )
 
 

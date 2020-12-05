@@ -20,7 +20,7 @@ class RoomCuentaRepository(private val cuentaDao: CuentaDao) :
 
     override suspend fun getAll(): List<CuentaEntity> {
 
-        return  cuentaDao.getAll()
+        return cuentaDao.getAll()
     }
 
     override suspend fun searchAccount(usuario: Long): CuentaEntity? {

@@ -23,23 +23,27 @@ class RegistrarseViewModel(
     fun save(usuario: Usuario) {
 
         viewModelScope.launch {
-            val lista = usuarioRepository.getAll()
-            for (usu in lista){
-                if (usu.nombre == usuario.nombre){
-                    estadoRegistracion.postValue(EstadoRegistro.ERROR)
-                }else{
-                    usuarioRepository.save(usuario)
-                    val nuevaCuenta = Cuenta(0, usuarioRepository.getByName(usuario.nombre).id )
-                    cuentaRepository.save(nuevaCuenta)
-                    estadoRegistracion.postValue(EstadoRegistro.OK)
-
+            usuarioRepository.getAll()
+                .find { it.equals(usuario.nombre) }
+                .let {
+                    if (it == null) {
+                        createUser(usuario)
+                    } else {
+                        estadoRegistracion.postValue(EstadoRegistro.ERROR)
+                    }
                 }
-            }
+
+        }
+
 
     }
 
-
-}
+    private suspend fun createUser(usuario: Usuario) {
+        usuarioRepository.save(usuario)
+        val nuevaCuenta = Cuenta(0, usuarioRepository.getByName(usuario.nombre).id)
+        cuentaRepository.save(nuevaCuenta)
+        estadoRegistracion.postValue(EstadoRegistro.OK)
+    }
 
     enum class EstadoRegistro {
         OK,

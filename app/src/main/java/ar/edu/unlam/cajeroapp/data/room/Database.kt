@@ -10,14 +10,16 @@ import ar.edu.unlam.cajeroapp.data.entity.UsuarioEntity
 
 @Database(
     version = 1,
-    entities = [UsuarioEntity::class , CuentaEntity::class]
+    entities = [UsuarioEntity::class, CuentaEntity::class ]
 
 )
-abstract class  CajeroDatabase : RoomDatabase() {
+abstract class CajeroDatabase : RoomDatabase() {
 
     abstract fun usuarioDao(): UsuarioDao
 
     abstract fun cuentaDato(): CuentaDao
+
+
 
 }
 

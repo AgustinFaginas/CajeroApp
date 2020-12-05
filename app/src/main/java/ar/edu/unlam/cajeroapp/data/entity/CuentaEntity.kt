@@ -5,15 +5,15 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "cuenta")
-public class CuentaEntity (
+public class CuentaEntity(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id:Long=0,
+    val id: Long = 0,
     @ColumnInfo(name = "dinero")
-    var dinero :Int,
+    var dinero: Int,
     @ColumnInfo(name = "idUsuario")
-    val idUsuario : Long
+    val idUsuario: Long
 
 
 )

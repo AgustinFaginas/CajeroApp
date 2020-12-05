@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#12DAA1"
+    android:orientation="vertical"
+    android:id="@+id/container">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="CAJEROAPP"
+        android:textSize="50dp"
+
+        ></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#FFC107"
+        android:text="DATOS TRANSFENRENCIA"
+        android:textAlignment="center"
+        android:textSize="40dp">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFC107"
+            android:text="Usuario salida : "
+            android:textAlignment="center"
+            android:textSize="30dp"></TextView>
+
+        <TextView
+            android:id="@+id/usuarioSalida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="SARASA"
+            android:textAlignment="center"
+            android:textSize="30dp"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFC107"
+            android:text="Usuario entrada : "
+            android:textAlignment="center"
+            android:textSize="30dp"></TextView>
+
+        <TextView
+            android:id="@+id/usuarioEntrada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="SARASA"
+            android:textAlignment="center"
+            android:textSize="30dp"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFC107"
+            android:text="Monto de transferencia  "
+            android:textAlignment="center"
+            android:textSize="30dp"></TextView>
+
+        <TextView
+            android:id="@+id/montoTrasnferencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="SARASA"
+            android:textAlignment="center"
+            android:textSize="30dp"></TextView>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/guardar"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="#FFC107"
+        android:hint="Guardar"
+        android:textSize="30dp">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/notificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center">
+
+    </TextView>
+
+
+</LinearLayout>
+

@@ -5,11 +5,11 @@ import ar.edu.unlam.cajeroapp.model.Usuario
 
 interface UsuarioRepository {
 
-   suspend fun save (usuario: Usuario)
+    suspend fun save(usuario: Usuario)
 
-    suspend fun getAll(): List <UsuarioEntity>
+    suspend fun getAll(): List<UsuarioEntity>
 
-   suspend fun getById(id:Long) : UsuarioEntity
+    suspend fun getById(id: Long): UsuarioEntity
 
-    suspend fun getByName(nombre:String) : UsuarioEntity
+    suspend fun getByName(nombre: String): UsuarioEntity
 }

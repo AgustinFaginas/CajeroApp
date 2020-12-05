@@ -5,26 +5,35 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
+        android:name=".CajeroApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".CajeroApp">
-        <activity android:name=".ui.MainActivity">
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.MainActivity"
+            android:windowSoftInputMode="adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.HomeActivity"></activity>
-        <activity android:name=".ui.RegistrarseActivity"></activity>
-        <activity android:name=".ui.TransferenciaActivity"></activity>
+        <activity
+            android:name=".ui.HomeActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".ui.RegistrarseActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".ui.TransferenciaActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".ui.DatosTrasnferenciaActivity"></activity>
+
     </application>
-
-
 
 
 </manifest>

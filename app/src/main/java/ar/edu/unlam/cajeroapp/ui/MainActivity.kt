@@ -16,21 +16,23 @@ class MainActivity : AppCompatActivity() {
     private val vm: MainViewModel by viewModel()
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         setListeners()
 
 
         vm.estadoinicioSesion.observe(this, Observer {
             when (it) {
-                MainViewModel.inicioSesion.OK -> {
+                MainViewModel.estadoInicioSesion.OK -> {
                     val intent = Intent(this, HomeActivity::class.java)
                     intent.putExtra(HomeActivity.USER_ID_PARAM, vm.usuario.value!!.id)
                     startActivity(intent)
                 }
-                MainViewModel.inicioSesion.ERROR -> notificacion.text =
+                MainViewModel.estadoInicioSesion.ERROR -> notificacion.text =
                     getString(R.string.usuario_no)
             }
         })

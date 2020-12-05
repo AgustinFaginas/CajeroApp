@@ -7,4 +7,7 @@
     <string name="transferencia_ok">Transferencia realizada correctamente</string>
     <string name="transferencia_error">Datos ingresados incorrectos</string>
     <string name="nombre_ya_registrado">Nombre ya registrado</string>
+    <string name="dinero_insuficiente">Dinero insuficiente</string>
+    <string name="screenshot_ok">Imagen guardada correctamente</string>
+
 </resources>

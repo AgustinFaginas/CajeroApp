@@ -20,7 +20,7 @@ import org.koin.dsl.module
 
 class CajeroApp : Application() {
 
-    val appModule= module {
+    val appModule = module {
 
 
         single { provideDatabase(get()).cuentaDato() }
@@ -28,10 +28,11 @@ class CajeroApp : Application() {
         single<UsuarioRepository> { RoomUsuarioRepository(get()) }
         single<CuentaRepository> { RoomCuentaRepository(get()) }
         viewModel { HomeViewModel(get(), get()) }
-        viewModel { RegistrarseViewModel(get(),get()) }
-        viewModel { MainViewModel(get(),get()) }
-        viewModel { TrasnferenciaViewModel(get(),get()) }
+        viewModel { RegistrarseViewModel(get(), get()) }
+        viewModel { MainViewModel(get(), get()) }
+        viewModel { TrasnferenciaViewModel(get(), get()) }
     }
+
     override fun onCreate() {
         super.onCreate()
         startKoin {
@@ -41,7 +42,8 @@ class CajeroApp : Application() {
         }
 
     }
-    fun provideDatabase(context :Context): CajeroDatabase{
-        return  Room.databaseBuilder(context,CajeroDatabase::class.java, "cajero_db").build()
+
+    fun provideDatabase(context: Context): CajeroDatabase {
+        return Room.databaseBuilder(context, CajeroDatabase::class.java, "cajero_db").build()
     }
-    }
+}

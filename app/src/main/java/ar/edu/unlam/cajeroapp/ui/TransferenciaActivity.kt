@@ -1,16 +1,17 @@
 package ar.edu.unlam.cajeroapp.ui
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
+import kotlinx.android.synthetic.main.activity_datos_transferencia.*
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.transferir
 import kotlinx.android.synthetic.main.activity_transferencia.*
 import kotlinx.android.synthetic.main.activity_transferencia.notificacion
 import kotlinx.android.synthetic.main.activity_transferencia.salir
-
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -28,14 +29,32 @@ class TransferenciaActivity : AppCompatActivity() {
         miViewModel.estadoTrasferencia.observe(this, Observer {
             when (it) {
                 TrasnferenciaViewModel.EstadoTransferencia.OK -> {
-                    monto.setText("")
-                    nombreUsuario.setText("")
-                    notificacion.text=getString(R.string.transferencia_ok)
+
+                    notificacion.text = getString(R.string.transferencia_ok)
+
+                    val intent = Intent(this, DatosTrasnferenciaActivity::class.java)
+
+                    intent.putExtra("monto",monto.text.toString())
+                    intent.putExtra("nombreUsuarioReceptor",nombreUsuario.text.toString())
+                    intent.putExtra("nombreUsuarioSalida", miViewModel.usuario.value?.nombre.toString())
+
+                    startActivity(intent)
+
                 }
                 TrasnferenciaViewModel.EstadoTransferencia.ERROR -> {
                     monto.setText("")
                     nombreUsuario.setText("")
-                    notificacion.text=getString(R.string.transferencia_error)
+                    notificacion.text = getString(R.string.transferencia_error)
+                }
+                TrasnferenciaViewModel.EstadoTransferencia.DINEROINSUFICIENTE -> {
+                    monto.setText("")
+                    nombreUsuario.setText("")
+                    notificacion.text = getString(R.string.dinero_insuficiente)
+                }
+                TrasnferenciaViewModel.EstadoTransferencia.USUARIONOENCONTRADO -> {
+                    monto.setText("")
+                    nombreUsuario.setText("")
+                    notificacion.text = getString(R.string.usuario_no)
                 }
             }
         })
@@ -47,7 +66,10 @@ class TransferenciaActivity : AppCompatActivity() {
 
         transferir.setOnClickListener() {
 
-            miViewModel.transferir(monto.text.toString(), nombreUsuario.text.toString())
+            val montoATrasferir = monto.text.toString()
+            val nombreUsuarioATrasferir = nombreUsuario.text.toString()
+
+            miViewModel.transferir(montoATrasferir, nombreUsuarioATrasferir)
 
 
         }
@@ -59,9 +81,11 @@ class TransferenciaActivity : AppCompatActivity() {
 
     }
 
-
     override fun onBackPressed() {
         finish()
         super.onBackPressed()
     }
+
 }
+
+

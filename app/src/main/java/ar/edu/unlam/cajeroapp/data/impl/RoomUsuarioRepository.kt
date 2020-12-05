@@ -5,10 +5,10 @@ import ar.edu.unlam.cajeroapp.data.entity.UsuarioEntity
 import ar.edu.unlam.cajeroapp.data.room.UsuarioRepository
 import ar.edu.unlam.cajeroapp.model.Usuario
 
-class RoomUsuarioRepository (private  val usuarioDao: UsuarioDao) :
+class RoomUsuarioRepository(private val usuarioDao: UsuarioDao) :
     UsuarioRepository {
 
-    override suspend fun save(usuario :Usuario) {
+    override suspend fun save(usuario: Usuario) {
 
         val usuarioEntity =
             UsuarioEntity(nombre = usuario.nombre)
@@ -17,11 +17,11 @@ class RoomUsuarioRepository (private  val usuarioDao: UsuarioDao) :
 
     override suspend fun getAll(): List<UsuarioEntity> {
 
-     return  usuarioDao.getAll()
+        return usuarioDao.getAll()
     }
 
     override suspend fun getById(id: Long): UsuarioEntity {
-        return  usuarioDao.getById(id)
+        return usuarioDao.getById(id)
     }
 
     override suspend fun getByName(nombre: String): UsuarioEntity {

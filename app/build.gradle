@@ -32,12 +32,19 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    testOptions {
+        unitTests.includeAndroidResources = true
+        unitTests.returnDefaultValues = true
+    }
+
+
 }
 
 
 
 dependencies {
 
+    def koin_version = '2.2.1'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.1'
@@ -81,13 +88,19 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     //Test
-    testImplementation 'junit:junit:4.12'
+
+    testImplementation "org.koin:koin-test:$koin_version"
+    testImplementation 'junit:junit:4.+'
     testImplementation "io.mockk:mockk:1.10.2"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.2'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "org.assertj:assertj-core:3.11.1"
+
+
+
+
+
+
 
 
 }

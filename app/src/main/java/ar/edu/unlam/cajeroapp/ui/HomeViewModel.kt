@@ -30,17 +30,22 @@ class HomeViewModel(
     fun depositar(dinero: String, idUsuario: Long) {
 
         if (dinero != "") {
-            try {
-                estadoDeposito.postValue(EstadoDeposito.DEPOSITO_OK)
-                viewModelScope.launch {
 
-                    val cuentaAct = CuentaEntity(id = cuenta.value!!.id, dinero = (cuenta.value!!.dinero + dinero.toInt()), idUsuario = cuenta.value!!.idUsuario)
+
+            viewModelScope.launch {
+                try {
+                    val cuentaAct = CuentaEntity(
+                        id = cuenta.value!!.id,
+                        dinero = (cuenta.value!!.dinero + dinero.toInt()),
+                        idUsuario = cuenta.value!!.idUsuario
+                    )
                     cuentaRepository.update(cuentaAct)
                     cuenta.value = cuentaAct
+                    estadoDeposito.postValue(EstadoDeposito.DEPOSITO_OK)
 
+                } catch (e: Exception) {
+                    estadoDeposito.postValue(EstadoDeposito.ERROR)
                 }
-            } catch (e: Exception) {
-                estadoDeposito.postValue(EstadoDeposito.ERROR)
             }
 
         } else {
@@ -56,7 +61,11 @@ class HomeViewModel(
                 if (dinero.toInt() < cuenta.value?.dinero ?: 0) {
                     estadoDeposito.postValue(EstadoDeposito.EXTRACCION_OK)
                     viewModelScope.launch {
-                        val cuentaAct = CuentaEntity(id = cuenta.value!!.id, dinero = (cuenta.value!!.dinero - dinero.toInt()), idUsuario = cuenta.value!!.idUsuario)
+                        val cuentaAct = CuentaEntity(
+                            id = cuenta.value!!.id,
+                            dinero = (cuenta.value!!.dinero - dinero.toInt()),
+                            idUsuario = cuenta.value!!.idUsuario
+                        )
                         cuentaRepository.update(cuentaAct)
                         cuenta.value = cuentaAct
                     }
