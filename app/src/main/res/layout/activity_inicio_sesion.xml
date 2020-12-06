@@ -1,0 +1,87 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#12DAA1"
+    tools:context=".ui.InicioSesionActivity">
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CAJEROAPP"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-black"
+        android:background="#FFC107"
+
+        ></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido"
+        android:textSize="50dp"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:background="#FFC107">
+
+    </TextView>
+
+
+
+    <EditText
+        android:id="@+id/nombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese nombre de usuario"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:textSize="30dp"
+        ></EditText>
+
+    <Button
+        android:id="@+id/ingresar"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:hint="Ingresar"
+        android:layout_marginTop="50dp"
+        android:background="#FFC107"
+        >
+
+    </Button>
+
+    <Button
+        android:id="@+id/registrarse"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:hint="Registrarse"
+        android:layout_marginTop="50dp"
+        android:background="#FFC107"
+        >
+
+    </Button>
+
+    <TextView
+        android:id="@+id/notificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        >
+
+    </TextView>
+
+
+
+
+</LinearLayout>
+
+
+
