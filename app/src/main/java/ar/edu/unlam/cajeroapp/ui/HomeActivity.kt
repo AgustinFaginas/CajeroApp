@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
-
 import ar.edu.unlam.cajeroapp.databinding.ActivityHomeBinding
 import kotlinx.android.synthetic.main.activity_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
+
 
     private val miViewModel: HomeViewModel by viewModel()
 
@@ -44,6 +44,11 @@ class HomeActivity : AppCompatActivity() {
                     binding.dineroADepositar.setText("")
                     binding.notificacion.text = getString(R.string.extraccion_ok)
                 }
+                HomeViewModel.EstadoDeposito.DINERO_INSUFICIENTE -> {
+                    binding.dineroADepositar.setText("")
+                    binding.notificacion.text = getString(R.string.dinero_insuficiente)
+                }
+
             }
         })
         val idUsuario = intent.getLongExtra(USER_ID_PARAM, 200)
@@ -62,13 +67,13 @@ class HomeActivity : AppCompatActivity() {
         var idUsuario = intent.getLongExtra(USER_ID_PARAM, 0)
         depositar.setOnClickListener() {
 
-            miViewModel.depositar(dineroADepositar.text.toString(), idUsuario)
+            miViewModel.depositar(dineroADepositar.text.toString())
 
         }
 
         extraer.setOnClickListener() {
 
-            miViewModel.extraer(dineroAExtraer.text.toString(), idUsuario)
+            miViewModel.extraer(dineroAExtraer.text.toString())
 
         }
         salir.setOnClickListener() {

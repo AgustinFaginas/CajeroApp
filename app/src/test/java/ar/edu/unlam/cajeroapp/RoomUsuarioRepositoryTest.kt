@@ -23,10 +23,8 @@ class RoomUsuarioRepositoryTest {
     fun setUp() = MockKAnnotations.init(this, relaxUnitFun = true)
 
 
-
-
     @Test
-    fun    `que la base de datos busque bien al usuario por nombre` () {
+    fun `que la base de datos busque bien al usuario por nombre`() {
         runBlockingTest {
 
             instance = RoomUsuarioRepository(usuarioDao)
@@ -40,6 +38,41 @@ class RoomUsuarioRepositoryTest {
         }
     }
 
+    @Test
+    fun `que la base de datos busque bien al usuario por id`() {
+        runBlockingTest {
+
+            instance = RoomUsuarioRepository(usuarioDao)
+            coEvery { usuarioDao.getById(0) } returns UsuarioEntity(0, "Agustin")
+
+            val result = usuarioDao.getById(0)
+
+            assertThat(result.nombre == "Agustin")
+
+        }
+    }
+
+    @Test
+    fun `que la base de datos traiga bien todos los usuarios`() {
+        runBlockingTest {
+
+            instance = RoomUsuarioRepository(usuarioDao)
+            coEvery { usuarioDao.getAll() } returns
+                    listOf(
+                        UsuarioEntity(0, "Agustin"),
+                        UsuarioEntity(1, "Jose"),
+                        UsuarioEntity(2, "Pablo")
+                    )
+
+            val result = usuarioDao.getAll()
+
+            assertThat(result.size == 3)
+            assertThat(result[0].nombre == "Agustin")
+            assertThat(result[1].nombre == "Jose")
+            assertThat(result[2].nombre == "Pablo")
+
+        }
+    }
 
 
 }

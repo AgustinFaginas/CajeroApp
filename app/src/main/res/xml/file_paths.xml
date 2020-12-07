@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-</PreferenceScreen>
+<paths  xmlns:android="http://schemas.android.com/apk/res/android">
+<external-path
+    name="my images"
+    path="Android/data/ar.edu.unlam.cajeroapp/files/Pictures">
+</external-path>
+</paths>

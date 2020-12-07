@@ -8,10 +8,10 @@ import ar.edu.unlam.cajeroapp.R
 import ar.edu.unlam.cajeroapp.databinding.ActivityRegistrarseBinding
 import ar.edu.unlam.cajeroapp.model.Usuario
 import kotlinx.android.synthetic.main.activity_registrarse.*
-
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class RegistrarseActivity : AppCompatActivity() {
+
 
     private val registrarseViewModel: RegistrarseViewModel by viewModel()
 
@@ -26,7 +26,7 @@ class RegistrarseActivity : AppCompatActivity() {
             when (it) {
                 RegistrarseViewModel.EstadoRegistro.OK -> {
                     binding.nombreUsuario.setText("")
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, InicioSesionActivity::class.java)
                     startActivity(intent)
                 }
                 RegistrarseViewModel.EstadoRegistro.ERROR -> {
@@ -36,24 +36,37 @@ class RegistrarseActivity : AppCompatActivity() {
             }
         })
 
+
     }
 
-    fun setListeners() {
+    private fun setListeners() {
 
         registrarse.setOnClickListener() {
             saveAndNavigate()
         }
+
+        foto_dni.setOnClickListener(){
+            val intent = Intent(this,CamaraActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    fun saveAndNavigate() {
+    private fun saveAndNavigate() {
 
         val nombre = nombreUsuario.text.toString()
 
         val usuario = Usuario(nombre)
 
-        registrarseViewModel.save(usuario)
+        registrarseViewModel.guardarUsuario(usuario)
 
     }
 
 
+
 }
+
+
+
+
+
+

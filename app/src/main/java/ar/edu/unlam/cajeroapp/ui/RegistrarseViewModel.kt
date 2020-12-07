@@ -9,6 +9,7 @@ import ar.edu.unlam.cajeroapp.model.Usuario
 import ar.edu.unlam.cajeroapp.data.room.UsuarioRepository
 import ar.edu.unlam.cajeroapp.model.Cuenta
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
 class RegistrarseViewModel(
@@ -20,25 +21,31 @@ class RegistrarseViewModel(
     val estadoRegistracion = MutableLiveData<EstadoRegistro>()
 
 
-    fun save(usuario: Usuario) {
+    fun guardarUsuario(usuario: Usuario) {
 
         viewModelScope.launch {
-            usuarioRepository.getAll()
-                .find { it.equals(usuario.nombre) }
-                .let {
-                    if (it == null) {
-                        createUser(usuario)
-                    } else {
-                        estadoRegistracion.postValue(EstadoRegistro.ERROR)
-                    }
-                }
+            try {
 
+
+                usuarioRepository.getAll()
+                    .find { it.equals(usuario.nombre) }
+                    .let {
+                        if (it == null) {
+                            createUser(usuario)
+                        } else {
+                            estadoRegistracion.postValue(EstadoRegistro.ERROR)
+                        }
+                    }
+
+            }catch (e : Exception){
+                estadoRegistracion.postValue(EstadoRegistro.ERROR)
+            }
         }
 
 
     }
 
-    private suspend fun createUser(usuario: Usuario) {
+    suspend fun createUser(usuario: Usuario) {
         usuarioRepository.save(usuario)
         val nuevaCuenta = Cuenta(0, usuarioRepository.getByName(usuario.nombre).id)
         cuentaRepository.save(nuevaCuenta)

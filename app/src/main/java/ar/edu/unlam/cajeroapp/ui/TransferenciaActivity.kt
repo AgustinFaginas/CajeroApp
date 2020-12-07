@@ -14,6 +14,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class TransferenciaActivity : AppCompatActivity() {
 
+
     private val miViewModel: TrasnferenciaViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,7 @@ class TransferenciaActivity : AppCompatActivity() {
             when (it) {
                 TrasnferenciaViewModel.EstadoTransferencia.OK -> {
 
-                    notificacion.text = getString(R.string.transferencia_ok)
+                    binding.notificacion.text = getString(R.string.transferencia_ok)
 
                     val intent = Intent(this, DatosTrasnferenciaActivity::class.java)
 
@@ -42,17 +43,17 @@ class TransferenciaActivity : AppCompatActivity() {
                 TrasnferenciaViewModel.EstadoTransferencia.ERROR -> {
                     binding.monto.setText("")
                     binding.nombreUsuario.setText("")
-                    notificacion.text = getString(R.string.transferencia_error)
+                    binding.notificacion.text = getString(R.string.transferencia_error)
                 }
                 TrasnferenciaViewModel.EstadoTransferencia.DINEROINSUFICIENTE -> {
                     binding.monto.setText("")
                     binding.nombreUsuario.setText("")
-                    notificacion.text = getString(R.string.dinero_insuficiente)
+                    binding.notificacion.text = getString(R.string.dinero_insuficiente)
                 }
                 TrasnferenciaViewModel.EstadoTransferencia.USUARIONOENCONTRADO -> {
                     binding.monto.setText("")
                     binding.nombreUsuario.setText("")
-                    notificacion.text = getString(R.string.usuario_no)
+                    binding.notificacion.text = getString(R.string.usuario_no)
                 }
             }
         })

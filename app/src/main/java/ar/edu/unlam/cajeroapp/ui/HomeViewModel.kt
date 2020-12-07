@@ -27,11 +27,9 @@ class HomeViewModel(
     }
 
 
-    fun depositar(dinero: String, idUsuario: Long) {
+    fun depositar(dinero: String) {
 
         if (dinero != "") {
-
-
             viewModelScope.launch {
                 try {
                     val cuentaAct = CuentaEntity(
@@ -54,7 +52,7 @@ class HomeViewModel(
         }
     }
 
-    fun extraer(dinero: String, idUsuario: Long) {
+    fun extraer(dinero: String) {
 
         if (dinero != "") {
             try {
@@ -71,7 +69,7 @@ class HomeViewModel(
                     }
 
                 } else {
-                    estadoDeposito.postValue(EstadoDeposito.ERROR)
+                    estadoDeposito.postValue(EstadoDeposito.DINERO_INSUFICIENTE)
                 }
             } catch (e: Exception) {
                 estadoDeposito.postValue(EstadoDeposito.ERROR)
@@ -86,11 +84,12 @@ class HomeViewModel(
     }
 
 
-    public enum class EstadoDeposito() {
+     enum class EstadoDeposito() {
         DEPOSITO_OK,
         STRING_VACIO,
         ERROR,
-        EXTRACCION_OK
+        EXTRACCION_OK,
+         DINERO_INSUFICIENTE
 
     }
 

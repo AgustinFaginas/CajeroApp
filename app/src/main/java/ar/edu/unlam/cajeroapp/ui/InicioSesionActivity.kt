@@ -5,20 +5,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
+import ar.edu.unlam.cajeroapp.databinding.ActivityInicioSesionBinding
 import ar.edu.unlam.cajeroapp.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_inicio_sesion.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class MainActivity : AppCompatActivity() {
+class InicioSesionActivity : AppCompatActivity() {
 
     private val vm: MainViewModel by viewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityInicioSesionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 

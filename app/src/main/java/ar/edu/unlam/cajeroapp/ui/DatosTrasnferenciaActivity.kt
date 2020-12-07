@@ -18,6 +18,7 @@ import java.io.IOException
 
 class DatosTrasnferenciaActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityDatosTransferenciaBinding.inflate(layoutInflater)

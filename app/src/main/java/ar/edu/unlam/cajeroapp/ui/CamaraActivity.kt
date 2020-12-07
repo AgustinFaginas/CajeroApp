@@ -22,7 +22,7 @@ import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class MainActivity : AppCompatActivity(){
+class CamaraActivity : AppCompatActivity(){
     private var imageCapture: ImageCapture? = null
 
     private lateinit var outputDirectory: File
@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity(){
         }
 
         // Set up the listener for take photo button
-        camera_capture_button.setOnClickListener { takePhoto() }
+        camera_capture_button.setOnClickListener(){
+            takePhoto()
+        }
 
         outputDirectory = getOutputDirectory()
 
