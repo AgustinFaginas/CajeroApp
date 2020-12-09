@@ -1,27 +1,26 @@
 package ar.edu.unlam.cajeroapp.ui
 
 import android.content.Intent
-
-
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
 import ar.edu.unlam.cajeroapp.databinding.ActivityHomeBinding
-import kotlinx.android.synthetic.main.activity_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
 
 
     private val miViewModel: HomeViewModel by viewModel()
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        val binding = ActivityHomeBinding.inflate(layoutInflater)
+         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
 
 
@@ -65,22 +64,26 @@ class HomeActivity : AppCompatActivity() {
     fun setListeners() {
 
         var idUsuario = intent.getLongExtra(USER_ID_PARAM, 0)
-        depositar.setOnClickListener() {
+        binding.depositar.setOnClickListener() {
 
-            miViewModel.depositar(dineroADepositar.text.toString())
+            miViewModel.depositar( binding.dineroADepositar.text.toString())
+
+        }
+
+
+
+        binding.extraer.setOnClickListener() {
+
+            miViewModel.extraer( binding.dineroAExtraer.text.toString())
 
         }
 
-        extraer.setOnClickListener() {
-
-            miViewModel.extraer(dineroAExtraer.text.toString())
-
-        }
-        salir.setOnClickListener() {
-            dineroEnCuenta.text = "0"
+        binding.salir.setOnClickListener() {
+            binding.dineroEnCuenta.text = "0"
             finish()
         }
-        transferir.setOnClickListener() {
+
+        binding.transferir.setOnClickListener() {
             val intent = Intent(this, TransferenciaActivity::class.java)
             intent.putExtra(HomeActivity.USER_ID_PARAM, idUsuario)
             startActivity(intent)

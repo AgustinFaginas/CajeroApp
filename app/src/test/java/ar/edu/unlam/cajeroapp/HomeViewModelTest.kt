@@ -18,6 +18,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.lang.Exception
 
 class HomeViewModelTest {
 
@@ -99,6 +100,7 @@ class HomeViewModelTest {
 
         }
     }
+
     @ExperimentalCoroutinesApi
     @Test
     fun extraccionOK() {
@@ -133,7 +135,8 @@ class HomeViewModelTest {
             coJustRun { cuentaRepository.update(cuentaAct) }
 
             instance.estadoDeposito.observeForever {
-                Assertions.assertThat(it).isEqualTo(HomeViewModel.EstadoDeposito.DINERO_INSUFICIENTE)
+                Assertions.assertThat(it)
+                    .isEqualTo(HomeViewModel.EstadoDeposito.DINERO_INSUFICIENTE)
             }
 
             instance.extraer("2000")
@@ -162,23 +165,5 @@ class HomeViewModelTest {
         }
     }
 
-    @ExperimentalCoroutinesApi
-    @Test
-    fun extraerError() {
-        couroutineTestRule.testDispatcher.runBlockingTest {
 
-            instance = HomeViewModel(cuentaRepository, usuarioRepository)
-
-
-            coJustRun { cuentaRepository.update(any()) }
-
-            instance.estadoDeposito.observeForever {
-                Assertions.assertThat(it).isEqualTo(HomeViewModel.EstadoDeposito.ERROR)
-            }
-
-
-            instance.extraer("10")
-
-        }
-    }
 }

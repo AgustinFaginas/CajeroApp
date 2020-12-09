@@ -18,10 +18,11 @@ import java.io.IOException
 
 class DatosTrasnferenciaActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityDatosTransferenciaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityDatosTransferenciaBinding.inflate(layoutInflater)
+         binding = ActivityDatosTransferenciaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 

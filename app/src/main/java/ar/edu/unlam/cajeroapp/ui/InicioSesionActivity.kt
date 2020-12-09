@@ -3,12 +3,11 @@ package ar.edu.unlam.cajeroapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
 import ar.edu.unlam.cajeroapp.databinding.ActivityInicioSesionBinding
-import ar.edu.unlam.cajeroapp.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_inicio_sesion.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -17,10 +16,11 @@ class InicioSesionActivity : AppCompatActivity() {
 
     private val vm: MainViewModel by viewModel()
 
+    private lateinit var binding: ActivityInicioSesionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityInicioSesionBinding.inflate(layoutInflater)
+         binding = ActivityInicioSesionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -46,13 +46,15 @@ class InicioSesionActivity : AppCompatActivity() {
     private fun setListeners() {
 
 
-        ingresar.setOnClickListener() {
 
-            vm.iniciarSesion(nombreUsuario.text.toString())
+        binding.ingresar.setOnClickListener() {
+
+            vm.iniciarSesion( binding.nombreUsuario.text.toString())
 
         }
 
-        registrarse.setOnClickListener() {
+
+        binding.registrarse.setOnClickListener() {
 
 
             val intent = Intent(this, RegistrarseActivity::class.java)

@@ -30,6 +30,17 @@
 
     </TextView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingrese su nombre , luego tome una foto de su documento de indentidad y proceda a registrarse"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:background="#FFC107">
+
+    </TextView>
+
 
 
     <EditText
@@ -57,13 +68,23 @@
         android:textSize="30dp">
     </Button>
 
+    <TextView
+        android:id="@+id/notificacion_dni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cuando la foto de su documento sea correcta se notificara aqui"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        >
+
+    </TextView>
+
 
     <Button
         android:id="@+id/registrarse"
         android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
         android:background="#FFC107"
         android:hint="Registrarse"
         android:textSize="30dp">

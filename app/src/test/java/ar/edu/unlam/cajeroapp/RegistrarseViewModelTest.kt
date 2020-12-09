@@ -76,6 +76,26 @@ class RegistrarseViewModelTest {
             }
 
 
+            instance.guardarUsuario(Usuario("Jose"))
+
+
+        }
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun registroUsuarioExisteUsuario() {
+        couroutineTestRule.testDispatcher.runBlockingTest {
+
+            instance = RegistrarseViewModel(usuarioRepository, cuentaRepository)
+
+            coEvery {usuarioRepository.getAll() } returns listOf(UsuarioEntity(2,"Jose"))
+
+
+            instance.estadoRegistracion.observeForever{
+                Assertions.assertThat(it).isEqualTo(RegistrarseViewModel.EstadoRegistro.EXISTEUSUARIO)
+            }
+
 
             instance.guardarUsuario(Usuario("Jose"))
 

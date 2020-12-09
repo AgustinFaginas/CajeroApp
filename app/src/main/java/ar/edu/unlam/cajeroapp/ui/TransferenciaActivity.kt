@@ -3,22 +3,23 @@ package ar.edu.unlam.cajeroapp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import ar.edu.unlam.cajeroapp.R
 import ar.edu.unlam.cajeroapp.databinding.ActivityTransferenciaBinding
-import kotlinx.android.synthetic.main.activity_home.transferir
-import kotlinx.android.synthetic.main.activity_transferencia.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class TransferenciaActivity : AppCompatActivity() {
 
 
+    private lateinit var binding: ActivityTransferenciaBinding
     private val miViewModel: TrasnferenciaViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityTransferenciaBinding.inflate(layoutInflater)
+         binding = ActivityTransferenciaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setListeners()
@@ -63,17 +64,19 @@ class TransferenciaActivity : AppCompatActivity() {
 
     private fun setListeners() {
 
-        transferir.setOnClickListener() {
 
-            val montoATrasferir = monto.text.toString()
-            val nombreUsuarioATrasferir = nombreUsuario.text.toString()
+        binding.transferir.setOnClickListener() {
+
+            val montoATrasferir = binding.monto.text.toString()
+            val nombreUsuarioATrasferir = binding.nombreUsuario.text.toString()
 
             miViewModel.transferir(montoATrasferir, nombreUsuarioATrasferir)
 
 
         }
 
-        salir.setOnClickListener() {
+
+        binding.salir.setOnClickListener() {
             finish()
         }
 

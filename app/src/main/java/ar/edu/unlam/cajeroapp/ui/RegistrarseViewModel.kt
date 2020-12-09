@@ -26,14 +26,13 @@ class RegistrarseViewModel(
         viewModelScope.launch {
             try {
 
-
                 usuarioRepository.getAll()
-                    .find { it.equals(usuario.nombre) }
+                    .find { it.nombre == usuario.nombre }
                     .let {
                         if (it == null) {
                             createUser(usuario)
                         } else {
-                            estadoRegistracion.postValue(EstadoRegistro.ERROR)
+                            estadoRegistracion.postValue(EstadoRegistro.EXISTEUSUARIO)
                         }
                     }
 
@@ -54,7 +53,8 @@ class RegistrarseViewModel(
 
     enum class EstadoRegistro {
         OK,
-        ERROR
+        ERROR,
+        EXISTEUSUARIO
     }
 
 
